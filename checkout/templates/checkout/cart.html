@@ -1,0 +1,274 @@
+{% extends "base.html" %} {% load thumbnail %} {% load widget_tweaks %} {% load static %} {% block title %} Carrinho de Compras {% endblock %} {% block container %}
+
+<div class="banner_top innerpage" id="home">
+  <div class="wrapper_top_w3layouts">
+    <div class="header_agileits">
+      <div class="logo inner_page_log">
+        <h1><a class="navbar-brand" href="{% url 'catalog:shop' %}"><span>DUDU</span> <i>Shoes</i></a></h1>
+      </div>
+      <div class="overlay overlay-contentpush">
+        <button type="button" class="overlay-close"><i class="fa fa-times" aria-hidden="true"></i></button>
+
+        <nav>
+          <ul>
+            <li><a href="{% url 'catalog:shop' %}" class="active">Home</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-lin dropdown-toggle" data-toggle="dropdown" href="{% url 'catalog:product_list' %}">Categorias <span class="caret"></span></a>
+              <div class="dropdown-menu">
+                {% for category in categories %}
+                <a class="dropdown-item" href="{{ category.get_absolute_url }}">{{ category }}</a> {% endfor %}
+              </div>
+            </li>
+            <li><a href="{% url 'about' %} ">Sobre nós</a></li>
+            <li><a href="{% url 'contact' %} ">Contato</a></li>
+
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'accounts:index' %}">Conta</a></li>
+            <li><a href="{% url 'logout' %}">Sair</a></li>
+            {% else %}
+            <li><a href="{% url 'login' %}">Entrar</a></li>
+            <li><a href="{% url 'accounts:register' %}">Registro</a></li>
+            {% endif %}
+          </ul>
+        </nav>
+      </div>
+      <div class="mobile-nav-button">
+        <button id="trigger-overlay" type="button"><i class="fa fa-bars" aria-hidden="true"></i></button>
+      </div>
+      <!-- cart details -->
+      <div class="top_nav_right">
+        <div class="shoecart shoecart2 cart cart box_1">
+          <a href="{% url 'checkout:cart_item' %}">
+							<button class="top_shoe_cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
+					</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- //cart details -->
+  <!-- search -->
+  <div class="search_w3ls_agileinfo">
+    <div class="cd-main-header">
+      <ul class="cd-header-buttons">
+        <li><a class="cd-search-trigger" href="#cd-search"> <span></span></a></li>
+      </ul>
+    </div>
+    <div id="cd-search" class="cd-search">
+      <form action="{% url 'catalog:product_list' %}">
+        <input name="q" type="text" placeholder="Pesquisar...">
+      </form>
+    </div>
+  </div>
+  <!-- //search -->
+  <div class="clearfix"></div>
+  <!-- /banner_inner -->
+  <div class="services-breadcrumb_w3ls_agileinfo">
+    <div class="inner_breadcrumb_agileits_w3">
+
+      <ul class="short">
+        <li><a href="{% url 'catalog:shop' %}">Home</a><i>|</i></li>
+        <li>Carrinho</li>
+      </ul>
+    </div>
+  </div>
+  <!-- //banner_inner -->
+</div>
+
+<div class="ads-grid_shop">
+  <div class="shop_inner_inf">
+    <div class="privacy about">
+      <h3>Carrinho<span> de compras</span></h3>
+
+      <div class="checkout-right">
+        <h4>Seu carrinho de compras contém: <span>3</span> produtos</h4>
+        <form class="" action="" method="post">
+          {% csrf_token %} {{ formset.management_form }}
+          <table class="timetable_sub">
+            <thead>
+              <tr>
+                <th>Cod.</th>
+                <th>Produto</th>
+                <th>Nome do Produto</th>
+                <th>Preço</th>
+                <th>Qtd</th>
+
+                <th>Subtotal</th>
+                <th>Remover</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for form in formset %}
+              <tr class="rem1">
+                <td class="invert">{{ form.instance.product.pk}}</td>
+
+                <td class="invert-image">
+                  <a href="{{ form.instance.product.get_absolute_url }}">
+                          {% if form.instance.product.image %}
+
+                               <img src="{{ form.instance.product.image|thumbnail_url:'product_image' }}" alt="" />
+                             {% else %}
+                               <img src="http://placehold.it/350x250" alt="" />
+                             {% endif %}
+                          </a>
+                </td>
+
+                <td class="invert">{{ form.instance.product }}</td>
+                <td class="invert">R$ {{ form.instance.price|floatformat:"2" }}</td>
+                <td class="invert" style="width:80px; height:80px;">
+                  {% render_field form.quantity class='form-control' %}
+                </td>
+
+
+                    <td class="invert">R$ {{form.instance.subtotal}} </td>
+
+                <td class="text-center">
+                  <button value="on" type="submit" name="{{ form.DELETE.html_name }}"><i class="fa fa-times"></i></button> {{ form.id }}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+          <div class="checkout-right-basket">
+            <a href="{% url 'catalog:product_list' %}">Continuar Compras</a>
+
+          </div>
+          <div class="checkout-left">
+            <button type="submit" class="submit check_out" name="button">Atualizar Carrinho</button>
+          </div>
+        </form>
+        <div class="checkout-left">
+          <div class="col-md-4 checkout-left-basket">
+            <p>Subtotal</p>
+              {% for form in formset %}
+            <ul>
+              <li> <i> - {{ form.instance.product|truncatewords:"3" }}  </i> <span>R$ {{form.instance.subtotal}} </</span></li>
+              {% endfor %}
+              <b><li>Total <i>-</i> <span>{{ total }}</span></li></b>
+            </ul>
+          </div>
+
+          <div class="col-md-8 address_form">
+						<h4>Adcione edereço de entrega</h4>
+						<form action="payment.html" method="post" class="creditly-card-form agileinfo_form">
+							<section class="creditly-wrapper wrapper">
+								<div class="information-wrapper">
+									<div class="first-row form-group">
+										<div class="controls">
+											<label class="control-label">Nome Completo</label>
+											<input class="billing-address-name form-control" type="text" name="name" placeholder="Nome Completo">
+										</div>
+										<div class="card_number_grids">
+											<div class="card_number_grid_left">
+												<div class="controls">
+													<label class="control-label">Telefone:</label>
+													<input class="form-control" type="text" placeholder="Telefone">
+												</div>
+											</div>
+											<div class="card_number_grid_right">
+												<div class="controls">
+													<label class="control-label">CEP: </label>
+													<input class="form-control" type="text" placeholder="CEP">
+												</div>
+											</div>
+                      <div class="card_number_grid_right">
+												<div class="controls">
+													<label class="control-label">Endereço: </label>
+													<input class="form-control" type="text" placeholder="Endereço">
+												</div>
+											</div>
+											<div class="clear"> </div>
+                      <div class="card_number_grid_right">
+												<div class="controls">
+													<label class="control-label">Nº: </label>
+													<input class="form-control" type="number" placeholder="numero">
+												</div>
+											</div>
+											<div class="clear"> </div>
+										</div>
+										<div class="controls">
+											<label class="control-label">Cidade: </label>
+											<input class="form-control" type="text" placeholder="Cidade">
+										</div>
+                    <div class="controls">
+											<label class="control-label">Complemento: </label>
+											<input class="form-control" type="text-area" placeholder="Complemento">
+										</div>
+
+									</div>
+									<button type="button" class="submit check_out">Confirmar Endereço</button>
+								</div>
+							</section>
+						</form>
+            <div class="col-md-8 address_form">
+              <div class="checkout-right-basket">
+                <a href="{% url 'checkout:checkout' %}">FINALIZAR COMPRA </a>
+              </div>
+            </div>
+					</div>
+
+          <div class="clearfix"> </div>
+
+
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %} {% block scripts %}
+
+<script>
+  $('.value-plus').on('click', function() {
+    var divUpd = $(this).parent().find('.value'),
+      newVal = parseInt(divUpd.text(), 10) + 1;
+    divUpd.text(newVal);
+  });
+  $('.value-minus').on('click', function() {
+    var divUpd = $(this).parent().find('.value'),
+      newVal = parseInt(divUpd.text(), 10) - 1;
+    if (newVal >= 1) divUpd.text(newVal);
+  });
+</script>
+<!--quantity-->
+<script>
+  $(document).ready(function(c) {
+    $('.close1').on('click', function(c) {
+      $('.rem1').fadeOut('slow', function(c) {
+        $('.rem1').remove();
+      });
+    });
+  });
+</script>
+<script>
+  $(document).ready(function(c) {
+    $('.close2').on('click', function(c) {
+      $('.rem2').fadeOut('slow', function(c) {
+        $('.rem2').remove();
+      });
+    });
+  });
+</script>
+<script>
+  $(document).ready(function(c) {
+    $('.close3').on('click', function(c) {
+      $('.rem3').fadeOut('slow', function(c) {
+        $('.rem3').remove();
+      });
+    });
+  });
+</script>
+
+
+<script type="text/javascript">
+  jQuery(document).ready(function($) {
+    $(".scroll").click(function(event) {
+      event.preventDefault();
+      $('html,body').animate({
+        scrollTop: $(this.hash).offset().top
+      }, 1000);
+    });
+  });
+</script>
+{% endblock %}

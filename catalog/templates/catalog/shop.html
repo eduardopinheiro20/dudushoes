@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% load pagination %}
+{% block title %} Shop | {{ block.super }} {% endblock %}
+
+
+{% block container %}
+<!-- banner -->
+<div class="banner_top innerpage" id="home">
+  <div class="wrapper_top_w3layouts">
+    <div class="header_agileits">
+      <div class="logo inner_page_log">
+        <h1><a class="navbar-brand" href="{% url 'catalog:shop' %}"><span>DUDU</span> <i>Shoes</i></a></h1>
+      </div>
+      <div class="overlay overlay-contentpush">
+        <button type="button" class="overlay-close"><i class="fa fa-times" aria-hidden="true"></i></button>
+
+        <nav>
+          <ul>
+            <li><a href="{% url 'catalog:shop' %}" class="active">Home</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-lin dropdown-toggle" data-toggle="dropdown" href="{% url 'catalog:product_list' %}">Categorias <span class="caret"></span></a>
+              <div class="dropdown-menu" >
+        				{% for category in categories %}
+        				<a class="dropdown-item"  href="{{ category.get_absolute_url }}">{{ category }}</a>
+        				{% endfor %}
+              </div>
+            </li>
+            <li><a href="{% url 'about' %} ">Sobre nós</a></li>
+            <li><a href="{% url 'contact' %} ">Contato</a></li>
+
+             {% if user.is_authenticated %}
+            <li><a href="{% url 'accounts:index' %}">Minha Conta</a></li>
+             <li><a href="{% url 'logout' %}">Sair</a></li>
+             {% else %}
+             <li><a href="{% url 'login' %}">Entrar</a></li>
+             <li><a href="{% url 'accounts:register' %}">Registro</a></li>
+             {% endif %}
+         </ul>
+        </nav>
+      </div>
+      <div class="mobile-nav-button">
+        <button id="trigger-overlay" type="button"><i class="fa fa-bars" aria-hidden="true"></i></button>
+      </div>
+      <!-- cart details -->
+      <div class="top_nav_right">
+        <div class="shoecart shoecart2 cart cart box_1">
+          <a href="{% url 'checkout:cart_item' %}">
+							<button class="top_shoe_cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
+					</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- //cart details -->
+  <!-- search -->
+  <div class="search_w3ls_agileinfo">
+    <div class="cd-main-header">
+      <ul class="cd-header-buttons">
+        <li><a class="cd-search-trigger" href="#cd-search"> <span></span></a></li>
+      </ul>
+    </div>
+    <div id="cd-search" class="cd-search">
+      <form action="{% url 'catalog:product_list' %}" >
+        <input name="q" type="text" placeholder="Pesquisar...">
+      </form>
+    </div>
+  </div>
+  <!-- //search -->
+  <div class="clearfix"></div>
+  <!-- /banner_inner -->
+
+
+  <div class="services-breadcrumb_w3ls_agileinfo">
+    <div class="inner_breadcrumb_agileits_w3">
+
+      <ul class="short">
+        <li><a href="{% url 'catalog:shop' %}">Home</a><i>|</i></li>
+        <li>Loja Virtual</li>
+      </ul>
+    </div>
+  </div>
+  <!-- //banner_inner -->
+</div>
+<!-- top Products -->
+<div class="ads-grid_shop">
+  <div class="shop_inner_inf">
+
+
+    <div class="left-ads-display col-md-12">
+      <div class="wrapper_top_shop">
+        <div class="col-md-6 shop_left">
+          <img src="{% static 'assets/images/banner3.jpg' %}" alt="">
+          <h6>Nike</h6>
+        </div>
+        <div class="col-md-6 shop_right">
+          <img src="{% static 'assets/images/banner2.jpg' %}" alt="">
+          <h6>Adidas</h6>
+        </div>
+        <div class="clearfix"></div>
+        <!-- product-sec1 -->
+        <div class="product-sec1">
+          <!--/mens-->
+          {% for product in products %}
+           {% include "catalog/_product.html" %}
+          {% endfor %}
+
+          {% pagination request paginator page_obj %}
+
+        </div>
+
+        <!-- //product-sec1 -->
+        <div class="col-md-6 shop_left shp">
+          <img src="{% static 'assets/images/banner4.jpg' %}" alt="">
+          <h6>Sapatos</h6>
+        </div>
+        <div class="col-md-6 shop_right shp">
+          <img src="{% static 'assets/images/banner1.jpg' %}" alt="">
+          <h6>Chuteiras</h6>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+
+
+  </div>
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+
+
+<script type="text/javascript">
+  $(function() {
+    $('.cart-item-add').on('click', function(e) {
+      e.preventDefault();
+      $.ajax({
+        url: $(this).attr('href'),
+        dataType: 'json',
+        success: function(data, textStatus, jqXHR) {
+          alert(data.message);
+        }
+      });
+    });
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "registerbase.html" %}
+
+{% load widget_tweaks %}
+
+{% block title %}Registro | {{ block.super }}{% endblock %}
+
+{% block container %}
+<div class="body"></div>
+<div class="grad"></div>
+<div class="header">
+
+  <div ><a class="navbar-brand" href="{% url 'index' %}"><span>Dudu</span><i>Shoes</i></a></div>
+
+</div>
+<br>
+
+
+        <form class=" login" method="post">
+
+             <div class="page-header">
+                 <h1>Cadastro de Usuário</h1>
+             </div>
+
+            {% csrf_token %}
+            {% for error in form.non_field_errors %}
+            <div class="alert alert-danger">
+                {{ error }}
+            </div>
+            {% endfor %}
+            <fieldset>
+                {% for field in form %}
+                <div class="form-group{% if field.errors %} has-error{% endif %}">
+                  <label for="{{ field.auto_id }}" class="col-md-3 control-label">{{ field.label }}</label>
+                  <div class="sizefull s-text7 p-l-22 p-r-22">
+                    {% render_field field class="loginInput" %}
+                    {% for error in field.errors %}
+                    <span class="help-block">{{ error }}</span>
+                    {% endfor %}
+                  </div>
+                </div>
+                {% endfor %}
+
+
+                <button type="submit" class="buttonRegister" >Cadastrar</button>
+                
+            </fieldset>
+          </form>
+
+  <script src='http://codepen.io/assets/libs/fullpage/jquery.js'></script>
+{% endblock %}

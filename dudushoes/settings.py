@@ -37,6 +37,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #libs
+    'widget_tweaks',
+    'paypal.standard.ipn',
+    'easy_thumbnails',
+    'watson',
+    #apps
+    'core',
+    'catalog',
+    'accounts',
+    'checkout',
 ]
 
 MIDDLEWARE = [
@@ -47,6 +57,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+     'checkout.middleware.cart_item_middleware',
 ]
 
 ROOT_URLCONF = 'dudushoes.urls'
@@ -62,6 +74,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                #apps
+                'catalog.context_processors.categories',
             ],
         },
     },
@@ -116,4 +130,97 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+MEDIA_URL = '/media/'
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# E-mail
+#EMAIL_HOST = 'smtp.gmail.com'
+#EMAIL_HOST_USER = 'eduardospfc18@gmail.com'
+#EMAIL_HOST_PASSWORD = 'edu1213346'
+DEFAULT_FROM_EMAIL = 'eduardopinheiro20@outlook.com'
+
+#auth
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'catalog:shop'
+
+AUTH_USER_MODEL = 'accounts.User'
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'accounts.backends.ModelBackend',
+)
+
+#Menssages
+from django.contrib.messages import constants as messages_constants
+MESSAGE_TAGS = {
+    messages_constants.DEBUG: 'debug',
+    messages_constants.INFO:  'info',
+    messages_constants.SUCCESS: 'success',
+    messages_constants.WARNING: 'warning',
+    messages_constants.ERROR: 'danger',
+}
+
+PAGSEGURO_TOKEN = '9BDB8A6294AE4C0B98D46BBF816502F5'
+PAGSEGURO_EMAIL = 'eduardopinheiro20@outlook.com'
+PAGSEGURO_SENDBOX = True
+
+PAYPAL_TEST = True
+PAYPAL_EMAIL = 'eduardopinheiro20@outlook.com'
+
+# thumbnail
+
+THUMBNAIL_ALIASES = {
+    '':{
+        'product_image': {'size': (285, 160), 'crop': True},
+    },
+}
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'cache',
+    }
+}
+
+
+# Logging
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse',
+        },
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+    },
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'checkout.views': {
+            'class': 'logging.FileHandler',
+            'level': 'DEBUG',
+            'filters': ['require_debug_true'],
+            'filename': os.path.join(BASE_DIR, 'checkout.views.log'),
+        }
+    },
+    'loggers': {
+        'checkout.views': {
+            'handlers': ['checkout.views'],
+            'level': 'DEBUG',
+        }
+    }
+}
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass

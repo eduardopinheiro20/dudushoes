@@ -1,0 +1,243 @@
+{% load static %}
+
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>{% block title %}ShoesStore{% endblock %}</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Downy Shoes Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+
+	@import url(http://fonts.googleapis.com/css?family=Exo:100,200,400);
+	@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);
+	<!-- //custom-theme -->
+	<link href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all" />
+	<link rel="stylesheet" href="{% static 'assets/css/shop.css' %}" type="text/css" media="screen" property="" />
+	<link rel="stylesheet" href="{% static 'assets/css/util.css' %}" type="text/css" media="screen" property="" />
+	<link href="{% static 'assets/css/style7.css' %}" rel="stylesheet" type="text/css" media="all" />
+	<link href="{% static 'assets/css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+
+	<!-- font-awesome-icons -->
+	<link href="{% static 'assets/css/font-awesome.css'%}" rel="stylesheet">
+	<!-- //font-awesome-icons -->
+	<link href="//fonts.googleapis.com/css?family=Montserrat:100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
+	    rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
+	<style>
+
+
+	body{
+		margin: 0;
+		padding: 0;
+		background: #fff;
+
+		color: #fff;
+		font-family: Arial;
+		font-size: 12px;
+	}
+	.txt1 {
+	  font-family: Montserrat-SemiBold;
+	  font-size: 16px;
+	  color: #555555;
+	  line-height: 1.5;
+	}
+
+	.txt2 {
+	  font-family: Poppins-Regular;
+	  font-size: 18px;
+	  color: #999999;
+	  line-height: 1.5;
+	}
+
+	.bo1 {border-bottom: 1px solid #999999;}
+
+
+	.body{
+		position: absolute;
+		top: -20px;
+		left: -20px;
+		right: -40px;
+		bottom: -40px;
+		width: auto;
+		height: auto;
+		background-image: url("../static/assets/images/Imagem_de_fundo_Login.jpeg");
+		background-size: cover;
+		-webkit-filter: blur(5px);
+		z-index: 0;
+	}
+
+	.grad{
+		position: absolute;
+		top: -20px;
+		left: -20px;
+		right: -40px;
+		bottom: -40px;
+		width: auto;
+		height: auto;
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
+		z-index: 1;
+		opacity: 0.7;
+	}
+
+	.header{
+		position: absolute;
+		top: calc(50% - 40px);
+		left: calc(50% - 400px);
+		z-index: 2;
+	}
+
+	.header div{
+		float: left;
+		color: #fff;
+		font-family: 'Exo', sans-serif;
+		font-size: 35px;
+		font-weight: 200;
+	}
+
+
+
+	.login{
+		position: absolute;
+		top: calc(50% - 75px);
+		left: calc(50% - 50px);
+		height: 150px;
+		width: 350px;
+		padding: 10px;
+		z-index: 2;
+	}
+
+	.loginInputUser{
+		width: 250px;
+		height: 30px;
+		background: transparent;
+		border: 1px solid rgba(255,255,255,0.6);
+		border-radius: 2px;
+		color: #fff;
+		font-family: 'Exo', sans-serif;
+		font-size: 16px;
+		font-weight: 400;
+		padding: 4px;
+	}
+
+	.loginInputSenha{
+		width: 250px;
+		height: 30px;
+		background: transparent;
+		border: 1px solid rgba(255,255,255,0.6);
+		border-radius: 2px;
+		color: #fff;
+		font-family: 'Exo', sans-serif;
+		font-size: 16px;
+		font-weight: 400;
+		padding: 4px;
+		margin-top: 10px;
+	}
+
+	.login button[type=submit]{
+		width: 250px;
+		height: 35px;
+		background: #fff;
+		border: 1px solid #fff;
+		cursor: pointer;
+		border-radius: 2px;
+		color: #a18d6c;
+		font-family: 'Exo', sans-serif;
+		font-size: 16px;
+		font-weight: 400;
+		padding: 6px;
+		margin-top: 10px;
+	}
+
+	.login button[type=submit]:hover{
+		opacity: 0.8;
+	}
+
+	.login button[type=submit]:active{
+		opacity: 0.6;
+	}
+
+	.loginInputUser:focus{
+		outline: none;
+		border: 1px solid rgba(255,255,255,0.9);
+	}
+
+	.loginInputSenha:focus{
+		outline: none;
+		border: 1px solid rgba(255,255,255,0.9);
+	}
+
+	.login button[type=submit]:focus{
+		outline: none;
+	}
+
+	::-webkit-input-placeholder{
+	   color: rgba(255,255,255,0.6);
+	}
+
+	::-moz-input-placeholder{
+	   color: rgba(255,255,255,0.6);
+	}
+	</style>
+</head>
+<body >
+
+{% block container %} {% endblock %}
+
+	<!-- //footer -->
+	<a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+ <!-- js -->
+ <script type="text/javascript" src="{% static 'assets/js/jquery-2.1.4.min.js' %}"></script>
+ <!-- //js -->
+ <!-- /nav -->
+ <script src="{% static 'assets/js/modernizr-2.6.2.min.js' %}"></script>
+ <script src="{% static 'assets/js/classie.js' %}"></script>
+ <script src="{% static 'assets/js/demo1.js' %}"></script>
+ <!-- //nav -->
+ <!-- cart-js -->
+ <script src="{% static 'assets/js/minicart.js' %}"></script>
+ <script>
+	 shoe.render();
+
+	 shoe.cart.on('shoe_checkout', function (evt) {
+		 var items, len, i;
+
+		 if (this.subtotal() > 0) {
+			 items = this.items();
+
+			 for (i = 0, len = items.length; i < len; i++) {}
+		 }
+	 });
+ </script>
+ <!-- //cart-js -->
+ <!--search-bar-->
+ <script src="{% static 'assets/js/search.js' %}"></script>
+ <!--//search-bar-->
+ <script src="{% static 'assets/js/responsiveslides.min.js' %}"></script>
+
+ <!-- js for portfolio lightbox -->
+ <!-- start-smoth-scrolling -->
+ <script type="text/javascript" src="{% static 'assets/js/move-top.js' %}"></script>
+ <script type="text/javascript" src="{% static 'assets/js/easing.js' %}"></script>
+
+ <script type="text/javascript">
+ 	jQuery(document).ready(function ($) {
+ 		$(".scroll").click(function (event) {
+ 			event.preventDefault();
+ 			$('html,body').animate({
+ 				scrollTop: $(this.hash).offset().top
+ 			}, 1000);
+ 		});
+ 	});
+ </script>
+ <!-- //end-smoth-scrolling -->
+
+  <script type="text/javascript" src="{% static 'assets/js/bootstrap-3.1.1.min.js' %}"></script>
+
+	{% block scripts %} {% endblock %}
+</body>
+
+</html>

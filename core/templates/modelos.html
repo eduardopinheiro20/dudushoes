@@ -1,0 +1,100 @@
+{% extends "mainMenu.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}
+    Modelos | {{ block.super }}
+{% endblock %}
+
+{% block container %}
+
+<section  id="explore-models-section" >
+
+  <div class="container">
+    <h1 class="display-4">Modelos</h1>
+    <div class="row">
+      <div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto">
+        <!-- block1 -->
+        <div class="block1 hov-img-zoom pos-relative m-b-30">
+          <img src="{% static 'assets/images/sapatoCasual.jpg' %}" alt="IMG-BENNER">
+
+          <div class="block1-wrapbtn w-size2">
+            <!-- Button -->
+            <a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+              Casual
+            </a>
+          </div>
+        </div>
+
+        <!-- block1 -->
+        <div class="block1 hov-img-zoom pos-relative m-b-30">
+          <img src="{% static 'assets/images/sapatoEsportivo.jpg' %}" alt="IMG-BENNER">
+
+          <div class="block1-wrapbtn w-size2">
+            <!-- Button -->
+            <a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+              Esportivos
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto">
+        <!-- block1 -->
+        <div class="block1 hov-img-zoom pos-relative m-b-30">
+          <img src="{% static 'assets/images/sapatoSocial01.jpeg' %}" alt="IMG-BENNER">
+
+          <div class="block1-wrapbtn w-size2">
+            <!-- Button -->
+            <a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+              Social
+            </a>
+          </div>
+        </div>
+
+        <!-- block1 -->
+        <div class="block1 hov-img-zoom pos-relative m-b-30">
+          <img src="{% static 'assets/images/summerShoe.jpeg' %}" alt="IMG-BENNER">
+
+          <div class="block1-wrapbtn w-size2">
+            <!-- Button -->
+            <a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+              Summer
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto">
+        <!-- block1 -->
+        <div class="block1 hov-img-zoom pos-relative m-b-30">
+          <img src="{% static 'assets/images/botaFemenino.jpeg' %}" alt="IMG-BENNER">
+
+          <div class="block1-wrapbtn w-size2">
+            <!-- Button -->
+            <a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+              Botas
+            </a>
+          </div>
+        </div>
+
+        <!-- block2 -->
+        <div class="block2 wrap-pic-w pos-relative m-b-30">
+          <img src="{% static 'assets/images/cintoFemenino.jpg' %}" alt="IMG">
+
+          <div class="block2-content sizefull ab-t-l flex-col-c-m">
+            <div class="block1-wrapbtn w-size2">
+              <!-- Button -->
+              <a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+                Acessórios
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
