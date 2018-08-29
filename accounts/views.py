@@ -12,9 +12,6 @@ from django.contrib.auth import login as auth_login
 from .models import User
 from .forms import UserAdminCreationForm
 
-def logout_view(request):
-    logout(request)
-    
 class IndexView(LoginRequiredMixin, TemplateView):
 
     template_name = 'accounts/index.html'
@@ -32,7 +29,7 @@ class UpdateUserView(LoginRequiredMixin, UpdateView):
 
     model = User
     template_name = 'accounts/update_user.html'
-    fields = ['name', 'email', 'telefone',  'city', 'adress', 'number']
+    fields = ['name', 'email', 'telefone',  'city', 'adress']
     success_url = reverse_lazy('accounts:index')
 
     def get_object(self):

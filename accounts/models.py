@@ -26,7 +26,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     telefone = models.CharField('Telefone', max_length=11, blank=True)
     city = models.CharField('Cidade', max_length=100)
     adress = models.CharField('Endereço', max_length=150)
-    number = models.IntegerField('Nº')
     complement = models.CharField('Complemento', max_length=200)
 
     is_staff = models.BooleanField('Equipe', default=False)
@@ -35,7 +34,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
     USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['cpf', 'email', 'telefone']
+    REQUIRED_FIELDS = ['email']
 
     objects = UserManager()
 
