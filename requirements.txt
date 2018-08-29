@@ -1,4 +1,9 @@
+dj-database-url
+Django
 gunicorn
 psycopg2
+model-mommy
+whitenoise
+django-widget-tweaks
 pagseguro
-dj-database-url
+django-paypal
