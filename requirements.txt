@@ -1,12 +1,11 @@
 dj-database-url==0.4.1
-Django==1.10
-gunicorn==19.4.5
+python-decouple
+gunicorn
 psycopg2
+Django==1.10
 model-mommy
 whitenoise
 django-widget-tweaks
 pagseguro
-idna==2.7
 model-mommy
 pagseguro
-python-decouple
