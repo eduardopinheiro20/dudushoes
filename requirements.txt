@@ -1,11 +1,11 @@
-dj-database-url==0.4.1
+dj-database-url
+Django==1.10
 python-decouple
 gunicorn
 psycopg2
-Django==1.10
 model-mommy
 whitenoise
 django-widget-tweaks
 pagseguro
-model-mommy
-pagseguro
+django-paypal
+dj-static
