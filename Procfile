@@ -1,1 +1,1 @@
-web: gunicorn dudushoes.wsgi --log-file -
+web:gunicorn dudushoes.wsgi --log-file -
