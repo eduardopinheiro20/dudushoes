@@ -1,4 +1,3 @@
-/* Overlay style */
 
 .overlay {
 	position: fixed;
@@ -7,9 +6,8 @@
 	top: 0;
 	left: 0;
 	z-index: 99999;
+
 }
-
-
 /* Overlay closing cross */
 
 .overlay .overlay-close {
@@ -44,6 +42,7 @@ button#trigger-overlay {
 	height: 0%;
 	-webkit-transform: translateY(-50%);
 	transform: translateY(-50%);
+
 }
 
 .overlay ul {
@@ -66,7 +65,7 @@ button#trigger-overlay {
     font-size: 1em;
     font-weight: 600;
     display: block;
-    color: #333;
+    color: #000000;
     -webkit-transition: color 0.2s;
     transition: color 0.2s;
     letter-spacing: 1px;
@@ -115,7 +114,8 @@ body {
 }
 
 .overlay-contentpush {
-	background:#fff;
+    background-image: url("../images/sapatoEsportivo.jpg");
+    background-repeat: no-repeat;
 	visibility: hidden;
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;

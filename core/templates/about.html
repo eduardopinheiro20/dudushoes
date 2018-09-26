@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="{% static  'assets/css/about.css' %}" type="text/css" media="screen" property="" />
 
 <!-- banner -->
-<div class="banner_top innerpage" >
+<div class="banner_top innerpage" id="home" >
   <div class="wrapper_top_w3layouts">
     <div class="header_agileits">
       <div class="logo inner_page_log">
@@ -86,7 +86,7 @@
 
 </div>
 <div class="mid_services">
-  <div class="col-md-6 according_inner_grids">
+  <div class="col-md-9 according_inner_grids">
     <h3 class="heading two">Quem Somos</h3>
     <div class="according_info">
       <div class="panel-group about_panel" id="accordion" role="tablist" aria-multiselectable="true">
@@ -116,122 +116,18 @@
           </div>
           <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
             <div class="panel-body panel_text">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore eveniet magni eaque iusto, expedita ipsam blanditiis qui aliquid illum praesentium..
+              {% for category in categories %}
+              <a class="dropdown-item"  href="{{ category.get_absolute_url }}">{{ category }}</a>
+              {% endfor %}
             </div>
           </div>
         </div>
       </div>
     </div>
 
-  </div>
-  <div class="col-md-6 mid_services_img">
-    <div class="bar-grids">
-      <h3 class="heading two three">Our Skills</h3>
-      <div class="skill_info">
-        <h6>Development<span> 95% </span></h6>
-        <div class="progress">
-          <div class="progress-bar progress-bar-striped active" style="width: 95%">
-          </div>
-        </div>
-        <h6>Pricing<span> 85% </span></h6>
-        <div class="progress">
-          <div class="progress-bar progress-bar-striped active" style="width: 85%">
-          </div>
-        </div>
-        <h6>Production <span>90% </span></h6>
-        <div class="progress">
-          <div class="progress-bar progress-bar-striped active" style="width: 90%">
-          </div>
-        </div>
-        <h6>Advertising <span>86% </span></h6>
-        <div class="progress prgs-last">
-          <div class="progress-bar progress-bar-striped active" style="width: 86%">
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-  <div class="clearfix"> </div>
-</div>
-<!-- /Properties -->
-<div class="mid_slider_w3lsagile">
-  <div class="col-md-3 mid_slider_text">
-    <h5>Some More Shoes</h5>
-  </div>
-  <div class="col-md-9 mid_slider_info">
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1" class=""></li>
-        <li data-target="#myCarousel" data-slide-to="2" class=""></li>
-        <li data-target="#myCarousel" data-slide-to="3" class=""></li>
-      </ol>
-      <div class="carousel-inner" role="listbox">
-        <div class="item active">
-          <div class="row">
-            <div class="col-md-3 col-sm-3 col-xs-3 slidering">
-              <div class="thumbnail"><img src="{% static 'assets/images/g1.jpg' %}" alt="Image" style="max-width:100%;"></div>
-            </div>
-            <div class="col-md-3 col-sm-3 col-xs-3 slidering">
-              <div class="thumbnail"><img src="{% static 'assets/images/g2.jpg' %}" alt="Image" style="max-width:100%;"></div>
-            </div>
-            <div class="col-md-3 col-sm-3 col-xs-3 slidering">
-              <div class="thumbnail"><img src="{% static 'assets/images/g3.jpg' %}" alt="Image" style="max-width:100%;"></div>
-            </div>
-            <div class="col-md-3 col-sm-3 col-xs-3 slidering">
-              <div class="thumbnail"><img src="{% static 'assets/images/g4.jpg' %}" alt="Image" style="max-width:100%;"></div>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="row">
-            <div class="col-md-3 col-sm-3 col-xs-3 slidering">
-              <div class="thumbnail"><img src="{% static 'assets/images/g5.jpg' %}" alt="Image" style="max-width:100%;"></div>
-            </div>
-            <div class="col-md-3 col-sm-3 col-xs-3 slidering">
-              <div class="thumbnail"><img src="{% static 'assets/images/g6.jpg' %}" alt="Image" style="max-width:100%;"></div>
-            </div>
-            <div class="col-md-3 col-sm-3 col-xs-3 slidering">
-              <div class="thumbnail"><img src="{% static 'assets/images/g2.jpg' %}" alt="Image" style="max-width:100%;"></div>
-            </div>
-            <div class="col-md-3 col-sm-3 col-xs-3 slidering">
-              <div class="thumbnail"><img src="{% static 'assets/images/g1.jpg' %}" alt="Image" style="max-width:100%;"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-  <span class="fa fa-chevron-left" aria-hidden="true"></span>
-  <span class="sr-only">Previous</span>
-</a>
-      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-  <span class="fa fa-chevron-right" aria-hidden="true"></span>
-  <span class="sr-only">Next</span>
-</a>
-      <!-- The Modal -->
-
-    </div>
   </div>
 
   <div class="clearfix"> </div>
 </div>
-<!--//banner -->
 
-<!-- /newsletter-->
-<div class="newsletter_w3layouts_agile">
-  <div class="col-sm-6 newsleft">
-    <h3>Sign up for Newsletter !</h3>
-  </div>
-  <div class="col-sm-6 newsright">
-    <form action="#" method="post">
-      <input type="email" placeholder="Enter your email..." name="email" required="">
-      <input type="submit" value="Submit">
-    </form>
-  </div>
-
-  <div class="clearfix"></div>
-</div>
-<!-- //newsletter-->
 {% endblock %}
