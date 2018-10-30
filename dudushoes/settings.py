@@ -10,6 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
+#Este é um aquivo com as configurações gera do django
+'''
+Onde eu vou dizer que banco vou utilizar, os arquivos staticos
+configurações das appi configurações de e-mails.
+
+'''
+
 import os
 from decouple import config
 from dj_database_url import parse as dburl
@@ -84,14 +91,16 @@ TEMPLATES = [
 WSGI_APPLICATION = 'dudushoes.wsgi.application'
 
 
-# Database
+                         # BANCO DE DADOS
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
+#Configuração de qual banco esta sendo utilizado 
 
-default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
+default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3') #Nome do path(utl) de onde ele vai ficar
 DATABASES = {
     'default': config('DATABASE_URL', default=default_dburl, cast=dburl),
 }
+
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
@@ -111,7 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
+# Sistema de internacionalização
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'

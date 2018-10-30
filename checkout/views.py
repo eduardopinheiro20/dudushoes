@@ -1,4 +1,8 @@
 # coding=utf-8
+
+
+#Toda view no django tem que retornar um obejto httpResponse
+
 import logging
 import json
 
