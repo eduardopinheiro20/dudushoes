@@ -21,13 +21,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         ], help_text='Um nome curto que será usado para identificá-lo de forma única na plataforma'
     )
     name = models.CharField('Nome', max_length=100, blank=True)
-    cpf = models.CharField('CPF', max_length=11, unique=True)
     email = models.EmailField('E-mail', unique=True)
-    telefone = models.CharField('Telefone', max_length=11, blank=True)
-    city = models.CharField('Cidade', max_length=100)
-    adress = models.CharField('Endereço', max_length=150)
-    complement = models.CharField('Complemento', max_length=200)
-
     is_staff = models.BooleanField('Equipe', default=False)
     is_active = models.BooleanField('Ativo', default=True)
     date_joined = models.DateTimeField('Data de Entrada', auto_now_add=True)
